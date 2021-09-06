@@ -1,8 +1,16 @@
 {% extends 'layouts/default.html.twig' %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}Liste des articles{% endblock %}
 
 {% block body %}
-    Date : {{ "now"|format_datetime('medium', 'short', locale='fr') }} 
-{% endblock %}
+    Date : {{ "now"|format_datetime('medium', 'short', locale='fr') }}
+    
+    <br/><br/>
+    <div id="articles">Loading...</div>
 
+    <script>
+    $(document).ready(function(){
+        $('#articles').initDataTables({{ datatable_settings(datatable) }});
+    });
+    </script>
+{% endblock %}
