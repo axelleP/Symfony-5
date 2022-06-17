@@ -26,13 +26,15 @@ class ArticleController extends AbstractController {
     public function showListe(Request $request, DataTableFactory $dataTableFactory): Response
     {
         $datatable = $dataTableFactory->create()
-        ->add('date_creation', DateTimeColumn::class, ['label' => 'Date création', 'format' => 'd/m/Y'])
+        ->add('date_creation', DateTimeColumn::class, ['label' => 'Date création', 'className' => 'text-center', 'format' => 'd/m/Y'])
         ->add('nom', TextColumn::class, ['label' => 'Nom'])
         ->add('description', TextColumn::class, ['label' => 'Description'])
-        ->add('prix', NumberColumn::class, ['label' => 'Prix'])
-        ->add('quantite', NumberColumn::class, ['label' => 'Quantité'])
-        ->add('image', TextColumn::class, ['label' => 'Image', 'render' => function($value, $context) {
-            return '<img src="/uploads/article/' . $value . '" alt="test">';
+        ->add('prix', NumberColumn::class, ['label' => 'Prix', 'className' => 'text-end', 'render' => function($value, $context) {
+            return $value . ' €';
+        }])
+        ->add('quantite', NumberColumn::class, ['label' => 'Quantité', 'className' => 'text-end'])
+        ->add('image', TextColumn::class, ['label' => 'Image', 'className' => 'text-center', 'render' => function($value, $context) {
+            return '<img class="w-100" src="/uploads/article/' . $value . '" alt="test">';
         }])
         ->createAdapter(ORMAdapter::class, [
             'entity' => Article::class,
