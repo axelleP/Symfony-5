@@ -1,4 +1,4 @@
-# <h1 align="center">👨‍💻 Entraînement Symfony 5 👩‍💻</h1>
+# <h1 align="center">👨‍💻 Symfony 5 👩‍💻</h1>
 
 </br>
 
